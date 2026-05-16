@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuestionRenderer from "./QuestionRenderer";
 import ResultCard from "./ResultCard";
-import { saveRun } from "../utils/api";
+import { saveRun, createVisitor} from "../utils/api";
 
 export default function CalculatorRunner({ questions, compute }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState(null);
-
+  const [visitorId, setVisitorId] = useState(null);
   const rawQuestion = questions[step];
+
+
+  useEffect(() => {
+  const initVisitor = async () => {
+    try {
+      const id = await createVisitor();
+      console.log("🟢 visitor criado:", id);
+      setVisitorId(id);
+    } catch (err) {
+      console.error("❌ erro visitor:", err);
+    }
+  };
+
+  initVisitor();
+}, []);
 
   // 🔥 opções dinâmicas
   const getOptions = (q) => {
@@ -59,25 +74,31 @@ export default function CalculatorRunner({ questions, compute }) {
   };
 
   const next = () => {
-    if (!validate()) return;
+  if (!validate()) return;
 
-    let nextStep = step + 1;
+  let nextStep = step + 1;
 
-    // 🔥 saltar escondidas
-    while (questions[nextStep] && !isVisible(questions[nextStep])) {
-      nextStep++;
-    }
+  // saltar escondidas
+  while (questions[nextStep] && !isVisible(questions[nextStep])) {
+    nextStep++;
+  }
 
-    if (nextStep >= questions.length) {
-      
-     const res = compute(answers);
-     setResult(res);
-     // 🔥 enviar para backend
-    saveRun(answers, res);
-    } else {
-      setStep(nextStep);
-    }
-  };
+  if (nextStep >= questions.length) {
+    const res = compute(answers);
+
+    setResult(res);
+
+    // 🔥 guardar
+    saveRun({
+      answers,
+      result: res,
+      visitorId,
+    });
+
+  } else {
+    setStep(nextStep); // 🔥 FALTAVA ISTO
+  }
+};
 
   const prev = () => setStep(step - 1);
 
@@ -100,9 +121,9 @@ export default function CalculatorRunner({ questions, compute }) {
 
   return (
     <div>
-      <p>Passo {step + 1} / {questions.length}</p>
+      <p className="step-counter">Passo {step + 1} / {questions.length}</p>
 
-      <h3>{question.question}</h3>
+      <h3 className="step-question">{question.question}</h3>
 
       <QuestionRenderer
         key={question.id + JSON.stringify(question.options)}
@@ -116,10 +137,10 @@ export default function CalculatorRunner({ questions, compute }) {
         }
       />
 
-      <br />
-
-      {step > 0 && <button onClick={prev}>Voltar</button>}
-      <button onClick={next}>Seguinte</button>
+      <div className="step-nav">
+        {step > 0 && <button className="btn-ghost" onClick={prev}>Voltar</button>}
+        <button onClick={next}>Seguinte</button>
+      </div>
     </div>
   );
 }

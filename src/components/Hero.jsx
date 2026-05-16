@@ -15,8 +15,8 @@ export default function Hero() {
         textAlign: "center",
       }}
     >
-      <h1>Bem-vindo ao nosso site</h1>
-      <p>Descobre o propósito desta plataforma rapidamente</p>
+      <h1>Sabes quando podes aceder ao SNS?</h1>
+      <p>Simula o teu acesso ao Serviço Nacional de Saúde em segundos.</p>
 
       <Button onClick={() => scrollToSection("about")}>
         Saber mais

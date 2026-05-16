@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ContactForm() {
+export default function ContactForm({ onSuccess }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -35,47 +35,77 @@ export default function ContactForm() {
       setMessage("");
 
       alert("Contacto guardado!");
+
+if (onSuccess) {
+  onSuccess();
+}
     } catch (err) {
       console.error(err);
       alert("Erro ao enviar");
     }
-  };
+  }
 
-  return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: "400px" }}>
-      <input
-        placeholder="Nome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+ const inputStyle = {
+  width: "100%",
 
-      <br /><br />
+  padding: "14px",
 
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+  borderRadius: "12px",
 
-      <br /><br />
+  border: "1px solid rgba(255,255,255,0.12)",
 
-      <input
-        placeholder="Telefone (opcional)"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-      />
+  background: "#1a1a1a",
 
-      <br /><br />
+  color: "white",
 
-      <textarea
-        placeholder="Mensagem"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
+  fontSize: "16px",
 
-      <br /><br />
+  boxSizing: "border-box",
+};
 
-      <button type="submit">Enviar</button>
-    </form>
-  );
+return (
+  <form
+    onSubmit={handleSubmit}
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "15px",
+    }}
+  >
+    <input
+      placeholder="Nome"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      style={inputStyle}
+    />
+
+    <input
+      placeholder="Email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      style={inputStyle}
+    />
+
+    <input
+      placeholder="Telefone (opcional)"
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      style={inputStyle}
+    />
+
+    <textarea
+      placeholder="Mensagem"
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
+      style={{
+        ...inputStyle,
+        minHeight: "120px",
+      }}
+    />
+
+    <button type="submit">
+      Continuar
+    </button>
+  </form>
+);
 }

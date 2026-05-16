@@ -8,21 +8,25 @@ export default function QuestionRenderer({
   switch (question.type) {
 
     case "radio":
-      return (question.options || []).map((opt) => {
-        const val = opt.value || opt;
-        const label = opt.label || opt;
+      return (
+        <div className="radio-group">
+          {(question.options || []).map((opt) => {
+            const val = opt.value || opt;
+            const label = opt.label || opt;
 
-        return (
-          <label key={val} style={{ display: "block" }}>
-            <input
-              type="radio"
-              checked={value === val}
-              onChange={() => onChange(val)}
-            />
-            {label}
-          </label>
-        );
-      });
+            return (
+              <label key={val} className="radio-option">
+                <input
+                  type="radio"
+                  checked={value === val}
+                  onChange={() => onChange(val)}
+                />
+                {label}
+              </label>
+            );
+          })}
+        </div>
+      );
 
     case "date":
       return (

@@ -4,38 +4,12 @@ export default function Header() {
   const location = useLocation();
 
   return (
-    <header
-      style={{
-        padding: "20px",
-        borderBottom: "1px solid #eee",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <h2>Meu Site</h2>
+    <header className="site-header">
+      <h2 className="site-logo">HealthApp</h2>
 
       <nav className="nav">
-        <Link
-          to="/"
-          className={location.pathname === "/" ? "active" : ""}
-        >
-          Home
-        </Link>
-
-        <Link
-          to="/sobre"
-          className={location.pathname === "/sobre" ? "active" : ""}
-        >
-          Sobre
-        </Link>
-
-        <Link
-          to="/contacto"
-          className={location.pathname === "/contacto" ? "active" : ""}
-        >
-          Contacto
-        </Link>
+        <Link to="/"      className={location.pathname === "/"      ? "active" : ""}>Home</Link>
+        <Link to="/sobre" className={location.pathname === "/sobre" ? "active" : ""}>Sobre</Link>
       </nav>
     </header>
   );

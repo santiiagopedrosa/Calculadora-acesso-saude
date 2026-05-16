@@ -12,7 +12,6 @@ import Result from "./pages/Result";
 import Calc1 from "./pages/Calc1";
 import Calc2 from "./pages/Calc2";
 
-
 function App() {
   return (
     <Routes>

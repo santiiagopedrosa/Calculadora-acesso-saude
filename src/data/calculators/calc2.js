@@ -1,11 +1,14 @@
-import { questions } from "../questions";
+import { computeCalc2 } from "../../utils/calc";
 
-export const calc2Questions = questions.filter(q =>
-  [
-    "calc1_tipoCuidado",
-    "calc1_prioridade",
-    "calc1_dataPedido",
+export const calc2 = {
+  id: "calc2",
+  title: "Tempo de espera",
+  description: "Verifica se foste atendido dentro do prazo legal.",
+  questionIds: [
     "calc2_estado",
-    "calc2_dataRealizacao"
-  ].includes(q.id)
-);
+    "calc2_prioridade",
+    "calc2_dataPedido",
+    "calc2_dataRealizacao",
+  ],
+  compute: computeCalc2,
+};
