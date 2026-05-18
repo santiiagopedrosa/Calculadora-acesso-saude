@@ -46,7 +46,24 @@ export default function Home() {
     <MainLayout>
       <Hero />
 
-      <section className="calc-section">
+      <section className="stats-row">
+        <div className="stat-item">
+          <span className="stat-number">2</span>
+          <span className="stat-label">Calculadoras</span>
+        </div>
+        <div className="stat-divider" />
+        <div className="stat-item">
+          <span className="stat-number">5</span>
+          <span className="stat-label">Perguntas rápidas</span>
+        </div>
+        <div className="stat-divider" />
+        <div className="stat-item">
+          <span className="stat-number">100%</span>
+          <span className="stat-label">Gratuito</span>
+        </div>
+      </section>
+
+      <section id="simulacao" className="calc-section">
         <h2 className="calc-title">Simulação de acesso ao SNS</h2>
 
         <div className="calc-container">

@@ -119,27 +119,35 @@ export default function CalculatorRunner({ questions, compute }) {
 
   if (!question) return <p>Loading...</p>;
 
+  const progress = ((step + 1) / questions.length) * 100;
+
   return (
     <div>
-      <p className="step-counter">Passo {step + 1} / {questions.length}</p>
+      <div className="progress-track">
+        <div className="progress-fill" style={{ width: `${progress}%` }} />
+      </div>
 
-      <h3 className="step-question">{question.question}</h3>
+      <div key={step} className="step-animate">
+        <p className="step-counter">Passo {step + 1} / {questions.length}</p>
 
-      <QuestionRenderer
-        key={question.id + JSON.stringify(question.options)}
-        question={question}
-        value={answers[question.id]}
-        onChange={(val) =>
-          setAnswers((prev) => ({
-            ...prev,
-            [question.id]: val,
-          }))
-        }
-      />
+        <h3 className="step-question">{question.question}</h3>
 
-      <div className="step-nav">
-        {step > 0 && <button className="btn-ghost" onClick={prev}>Voltar</button>}
-        <button onClick={next}>Seguinte</button>
+        <QuestionRenderer
+          key={question.id + JSON.stringify(question.options)}
+          question={question}
+          value={answers[question.id]}
+          onChange={(val) =>
+            setAnswers((prev) => ({
+              ...prev,
+              [question.id]: val,
+            }))
+          }
+        />
+
+        <div className="step-nav">
+          {step > 0 && <button className="btn-ghost" onClick={prev}>Voltar</button>}
+          <button onClick={next}>Seguinte</button>
+        </div>
       </div>
     </div>
   );

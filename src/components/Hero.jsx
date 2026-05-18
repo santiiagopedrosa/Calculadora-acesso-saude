@@ -7,15 +7,16 @@ export default function Hero() {
   };
 
   return (
-    <section
-      id="hero"
-      className="hero"
-    >
-      <h1>Sabes quando podes aceder ao SNS?</h1>
+    <section id="hero" className="hero">
+      <div className="hero-blob hero-blob-1" />
+      <div className="hero-blob hero-blob-2" />
+
+      <span className="hero-badge">✦ Gratuito · 2 minutos</span>
+      <h1>Sabes quando podes<br />aceder ao SNS?</h1>
       <p>Simula o teu acesso ao Serviço Nacional de Saúde em segundos.</p>
 
-      <Button onClick={() => scrollToSection("about")}>
-        Saber mais
+      <Button className="hero-cta" onClick={() => scrollToSection("simulacao")}>
+        Começar simulação →
       </Button>
     </section>
   );
