@@ -1,261 +1,43 @@
 :root {
-  --bg:           #14110f;
-  --card:         #1f1a17;
-  --card-2:       #2a221d;
-  --border:       rgba(255, 200, 120, 0.15);
-  --text:         #f6e7d3;
-  --text-h:       #f6e7d3;
-  --muted:        rgba(246, 231, 211, 0.6);
-  --accent:       #d89b3c;
-  --accent-hover: #e2aa54;
-  --shadow:       0 10px 40px rgba(0, 0, 0, 0.35);
-  --radius:       20px;
+  --bg:          #f5f1eb;
+  --bg-alt:      #ede9e1;
+  --text:        #2a2420;
+  --text-h:      #1c1410;
+  --muted:       #8a7568;
+  --accent:      #b05c40;
+  --accent-hover:#8f4930;
+  --border:      #ddd5c8;
+  --radius:      10px;
 }
+
+* { box-sizing: border-box; }
 
 h1, h2, h3, p {
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.25;
+}
+
+h1, h2, h3 {
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-weight: 800;
+  color: var(--text-h);
 }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', Arial, sans-serif;
-}
-
-/* ── SECÇÃO CALCULADORAS ──────────────────────────────────────────────────── */
-
-.calc-section {
-  padding: 80px 20px;
-  background: var(--bg);
-}
-
-.calc-container {
-  max-width: 900px;
-  margin: auto;
-}
-
-.calc-title {
-  text-align: center;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 60px !important;
-  color: var(--accent);
-}
-
-/* ── CARDS ───────────────────────────────────────────────────────────────── */
-
-.calc-card {
-  background: linear-gradient(180deg, var(--card), var(--card-2));
-  border-radius: var(--radius);
-  padding: 40px;
-  margin-bottom: 40px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  color: var(--text);
-}
-
-.calc-card-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 10px !important;
-  color: var(--accent);
-}
-
-.calc-card-description {
-  color: var(--muted);
-  margin-bottom: 32px !important;
-  line-height: 1.7;
-}
-
-/* ── STEP INDICATOR ──────────────────────────────────────────────────────── */
-
-.step-counter {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: rgba(216, 155, 60, 0.1);
-  padding: 5px 14px;
-  border-radius: 999px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(216, 155, 60, 0.25);
-}
-
-.step-question {
-  font-size: 1.35rem;
-  font-weight: 600;
-  margin: 0 0 24px;
-  color: var(--text);
-  line-height: 1.4;
-}
-
-/* ── RADIO OPTIONS ───────────────────────────────────────────────────────── */
-
-.radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.radio-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
-  background: rgba(255, 255, 255, 0.02);
-  font-size: 15px;
-  color: var(--text);
-}
-
-.radio-option:hover {
-  border-color: var(--accent);
-  background: rgba(216, 155, 60, 0.07);
-}
-
-.radio-option input[type="radio"] {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--accent);
-  margin: 0;
-  flex-shrink: 0;
-}
-
-/* ── NAVEGAÇÃO ───────────────────────────────────────────────────────────── */
-
-.step-nav {
-  display: flex;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-/* ── BOTÕES ──────────────────────────────────────────────────────────────── */
-
-button {
-  background: var(--accent);
-  color: #1a140f;
-  border: none;
-  padding: 13px 28px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 15px;
-  font-family: inherit;
-  transition: background 0.15s, transform 0.15s;
-}
-
-button:hover,
-.btn-primary:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: #1a140f;
-  border: none;
-}
-
-.btn-ghost {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-
-.btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-}
-
-/* ── FORMULÁRIOS ─────────────────────────────────────────────────────────── */
-
-input,
-textarea,
-select {
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
-  margin-bottom: 14px;
-  box-sizing: border-box;
-  font-size: 15px;
-  font-family: inherit;
-  transition: border-color 0.15s;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* ── PAYWALL ─────────────────────────────────────────────────────────────── */
-
-.paywall-card {
-  background: linear-gradient(180deg, #2d241d, #1f1a17);
-  border-radius: 24px;
-  padding: 40px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  color: var(--text);
-  margin-bottom: 40px;
-}
-
-.paywall-card h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 12px !important;
-  color: var(--text);
-}
-
-.paywall-card p {
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 28px !important;
-}
-
-/* ── RESULTADOS ──────────────────────────────────────────────────────────── */
-
-.result-card {
-  border-radius: var(--radius);
-  padding: 28px 30px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.result-ok {
-  background: rgba(16, 34, 22, 0.9);
-  border: 1px solid #2d8a4a;
-}
-
-.result-bad {
-  background: rgba(42, 17, 17, 0.9);
-  border: 1px solid #c0392b;
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
 }
 
 /* ── HEADER ──────────────────────────────────────────────────────────────── */
 
 .site-header {
-  padding: 18px 32px;
+  padding: 14px 36px;
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
-  background: var(--card);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -266,17 +48,23 @@ textarea {
 
 .site-logo {
   margin: 0;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: -0.02em;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-h);
+  letter-spacing: -0.01em;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
 }
 
 .nav a {
   color: var(--muted);
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   transition: color 0.15s;
 }
 
@@ -291,56 +79,278 @@ textarea {
 .hero {
   padding: 90px 20px 80px;
   text-align: center;
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse 70% 55% at 50% -10%, rgba(216, 155, 60, 0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(216, 155, 60, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(216, 155, 60, 0.06) 0%, transparent 60%),
-    var(--bg);
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 200, 120, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 200, 120, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-}
-
-.hero > * {
-  position: relative;
-  z-index: 1;
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: var(--text);
-  margin-bottom: 16px !important;
+  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  font-weight: 800;
+  color: var(--text-h);
+  letter-spacing: -0.03em;
+  margin-bottom: 14px !important;
 }
 
 .hero p {
   color: var(--muted);
-  font-size: 1.15rem;
-  margin-bottom: 32px !important;
+  font-size: 1.1rem;
+  margin-bottom: 36px !important;
   line-height: 1.6;
+}
+
+/* ── SECÇÃO CALCULADORAS ─────────────────────────────────────────────────── */
+
+.calc-section {
+  padding: 80px 20px;
+  background: var(--bg);
+}
+
+.calc-container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.calc-title {
+  text-align: center;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-weight: 800;
+  color: var(--text-h);
+  letter-spacing: -0.02em;
+  margin-bottom: 56px !important;
+}
+
+/* ── CARDS SEM CAIXA — separador com linha acento ────────────────────────── */
+
+.calc-card {
+  background: #ede8df;
+  border: none;
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: none;
+  padding: 32px 36px 36px;
+  margin-bottom: 56px;
+  color: var(--text);
+}
+
+.calc-card-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-h);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px !important;
+}
+
+.calc-card-description {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 28px !important;
+  line-height: 1.6;
+}
+
+/* ── STEP INDICATOR ──────────────────────────────────────────────────────── */
+
+.step-counter {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.step-question {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 22px;
+  color: var(--text-h);
+  line-height: 1.4;
+}
+
+/* ── RADIO OPTIONS (FLAT) ────────────────────────────────────────────────── */
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: color 0.12s;
+}
+
+.radio-option:hover {
+  color: var(--accent);
+  background: none;
+  border: none;
+}
+
+.radio-option input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--accent);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* ── NAVEGAÇÃO PASSOS ────────────────────────────────────────────────────── */
+
+.step-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* ── BOTÕES ──────────────────────────────────────────────────────────────── */
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 11px 26px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  font-family: 'Nunito', system-ui, sans-serif;
+  transition: background 0.15s, transform 0.12s;
+}
+
+button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: none;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+
+.btn-ghost:hover {
+  border-color: var(--muted);
+  background: none;
+  transform: translateY(-1px);
+}
+
+/* ── FORMULÁRIOS ─────────────────────────────────────────────────────────── */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--text);
+  margin-bottom: 14px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-weight: 600;
+  transition: border-color 0.15s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ── PAYWALL ─────────────────────────────────────────────────────────────── */
+
+.paywall-card {
+  background: #ede8df;
+  border: none;
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: none;
+  padding: 32px 36px 36px;
+  margin-bottom: 56px;
+  color: var(--text);
+}
+
+.paywall-card h2 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-h);
+  margin-bottom: 6px !important;
+}
+
+.paywall-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px !important;
+}
+
+/* ── RESULTADOS ──────────────────────────────────────────────────────────── */
+
+.result-card {
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  background: none;
+  border-left: 4px solid var(--border);
+}
+
+.result-ok {
+  border-left-color: #4a9a65;
+  background: rgba(74, 154, 101, 0.06);
+}
+
+.result-bad {
+  border-left-color: var(--accent);
+  background: rgba(176, 92, 64, 0.07);
 }
 
 /* ── FOOTER ──────────────────────────────────────────────────────────────── */
 
 .site-footer {
-  padding: 24px 32px;
+  padding: 22px 36px;
   border-top: 1px solid var(--border);
-  background: var(--card);
+  background: var(--bg);
   text-align: center;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   margin-top: auto;
 }
 
@@ -348,8 +358,8 @@ textarea {
 
 .fade-section {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
 .fade-section.fade-visible {
@@ -360,9 +370,12 @@ textarea {
 /* ── MOBILE ──────────────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
-  .calc-title { font-size: 2rem; }
+  .site-header  { padding: 12px 20px; }
+  .site-footer  { padding: 18px 20px; }
+  .calc-section { padding: 56px 20px; }
+  .calc-title   { margin-bottom: 40px !important; }
   .calc-card,
-  .paywall-card { padding: 24px; }
-  .calc-card-title { font-size: 1.4rem; }
-  .step-question { font-size: 1.1rem; }
+  .paywall-card { padding-top: 24px; margin-bottom: 44px; }
+  .calc-card-title { font-size: 1.25rem; }
+  .step-question   { font-size: 1.05rem; }
 }

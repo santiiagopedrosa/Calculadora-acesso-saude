@@ -10,10 +10,6 @@ export default function Hero() {
     <section
       id="hero"
       className="hero"
-      style={{
-        padding: "100px 20px",
-        textAlign: "center",
-      }}
     >
       <h1>Sabes quando podes aceder ao SNS?</h1>
       <p>Simula o teu acesso ao Serviço Nacional de Saúde em segundos.</p>
