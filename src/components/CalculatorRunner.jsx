@@ -1,31 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import QuestionRenderer from "./QuestionRenderer";
 import ResultCard from "./ResultCard";
-import { saveRun, createVisitor} from "../utils/api";
+import { saveRun } from "../utils/api";
 
-export default function CalculatorRunner({ questions, compute }) {
+export default function CalculatorRunner({ questions, compute, calcId }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState(null);
-  const [visitorId, setVisitorId] = useState(null);
+  const visitorId = localStorage.getItem("visitorId");
+  const contactId = localStorage.getItem("contactId");
   const rawQuestion = questions[step];
 
-
-  useEffect(() => {
-  const initVisitor = async () => {
-    try {
-      const id = await createVisitor();
-      console.log("🟢 visitor criado:", id);
-      setVisitorId(id);
-    } catch (err) {
-      console.error("❌ erro visitor:", err);
-    }
-  };
-
-  initVisitor();
-}, []);
-
-  // 🔥 opções dinâmicas
+  // opções dinâmicas
   const getOptions = (q) => {
     if (q.optionsByParent) {
       const parentValue = answers[q.dependsOn];
@@ -35,7 +21,6 @@ export default function CalculatorRunner({ questions, compute }) {
     return q.options || [];
   };
 
-  // 🔥 inject options
   const question = rawQuestion
     ? {
         ...rawQuestion,
@@ -43,13 +28,11 @@ export default function CalculatorRunner({ questions, compute }) {
       }
     : null;
 
-  // 🔥 showIf
   const isVisible = (q) => {
     if (!q.showIf) return true;
     return answers[q.showIf.questionId] === q.showIf.equals;
   };
 
-  // 🔥 validação
   const validate = () => {
     if (!question) return false;
 
@@ -74,31 +57,22 @@ export default function CalculatorRunner({ questions, compute }) {
   };
 
   const next = () => {
-  if (!validate()) return;
+    if (!validate()) return;
 
-  let nextStep = step + 1;
+    let nextStep = step + 1;
 
-  // saltar escondidas
-  while (questions[nextStep] && !isVisible(questions[nextStep])) {
-    nextStep++;
-  }
+    while (questions[nextStep] && !isVisible(questions[nextStep])) {
+      nextStep++;
+    }
 
-  if (nextStep >= questions.length) {
-    const res = compute(answers);
-
-    setResult(res);
-
-    // 🔥 guardar
-    saveRun({
-      answers,
-      result: res,
-      visitorId,
-    });
-
-  } else {
-    setStep(nextStep); // 🔥 FALTAVA ISTO
-  }
-};
+    if (nextStep >= questions.length) {
+      const res = compute(answers);
+      setResult(res);
+      saveRun({ answers, result: res, visitorId, contactId, calcId });
+    } else {
+      setStep(nextStep);
+    }
+  };
 
   const prev = () => setStep(step - 1);
 

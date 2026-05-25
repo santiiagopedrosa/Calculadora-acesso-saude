@@ -38,6 +38,7 @@ export const computeCalc1 = (answers) => {
   const ultrapassado = hoje > dataLimite;
 
   return {
+    score: ultrapassado ? 2 : 1,
     mensagem: ultrapassado
       ? "O prazo já foi ultrapassado."
       : "Ainda estás dentro do prazo.",
@@ -86,6 +87,7 @@ export const computeCalc2 = (answers) => {
     const ultrapassado = dias > limite;
 
     return {
+      score: ultrapassado ? 2 : 1,
       mensagem: ultrapassado
         ? "O prazo já foi ultrapassado."
         : "Ainda estás dentro do prazo.",
@@ -115,6 +117,7 @@ export const computeCalc2 = (answers) => {
   const cumpriu = dias <= limite;
 
   return {
+    score: cumpriu ? 1 : 2,
     mensagem: cumpriu
       ? "O prazo foi cumprido."
       : "O prazo não foi cumprido.",

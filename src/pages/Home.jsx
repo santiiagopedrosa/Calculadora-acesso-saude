@@ -21,7 +21,10 @@ export default function Home() {
         if (!visitorId) return;
         const res  = await fetch(`http://localhost:3001/contacts/check/${visitorId}`);
         const data = await res.json();
-        if (data.hasContact) setCalc2Unlocked(true);
+        if (data.hasContact) {
+          setCalc2Unlocked(true);
+          if (data.contactId) localStorage.setItem("contactId", data.contactId);
+        }
       } catch (err) {
         console.error(err);
       }
@@ -72,6 +75,7 @@ export default function Home() {
             <CalculatorRunner
               questions={getQuestionsForCalc(calc1.questionIds)}
               compute={calc1.compute}
+              calcId="calc1"
             />
           </CalculatorCard>
 
@@ -88,6 +92,7 @@ export default function Home() {
               <CalculatorRunner
                 questions={getQuestionsForCalc(calc2.questionIds)}
                 compute={calc2.compute}
+                calcId="calc2"
               />
             </CalculatorCard>
           )}
