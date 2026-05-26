@@ -9,7 +9,8 @@ export default function Header() {
 
       <nav className="nav">
         <Link to="/"      className={location.pathname === "/"      ? "active" : ""}>Home</Link>
-        <Link to="/sobre" className={location.pathname === "/sobre" ? "active" : ""}>Sobre</Link>
+        <Link to="/sobre"       className={location.pathname === "/sobre"       ? "active" : ""}>Sobre</Link>
+        <Link to="/admin/login" className={location.pathname.startsWith("/admin") ? "active" : ""}>Admin</Link>
       </nav>
     </header>
   );
